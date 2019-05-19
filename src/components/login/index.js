@@ -1,36 +1,32 @@
 import React from 'react'
-import { Transition } from 'react-spring/renderprops'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import { BrowserRouter , Switch, Route } from "react-router-dom";
 import useStyles from './styles.js'
-
+import {Transition} from 'react-spring/renderprops'
 //import LinearProgress from '@material-ui/core/LinearProgress';
 import Login, { LoginHeader } from './login.js'
 import Forgot, { ForgotHeader } from './forgot.js'
 
 const Auth = () => {
   const classes = useStyles()
+
   return (
     <>
       <div className={classes.container}>
         <div className={classes.authWrapper}>
           {/*<LinearProgress className={classes.linerProgress} />*/}
           <div className={classes.authHeader}>
-            <Router>
               <Switch>
                 <Route path="/login" render={props => LoginHeader({ ...props, classes })} />
                 <Route path="/forgot" render={props => ForgotHeader({ ...props, classes })} />
               </Switch>
-            </Router>
           </div>
-          <Router>
             <Route
-              children={({ location }) => (console.log(location)) || (
+              children={({ location,history }) => (console.log(location,history)) || (
                 <Transition
-                  config={{ duration: 10000 }}
+                  config={{}}
                   items={location}
                   keys={location.pathname}
-                  initial={{ transform: 'translateX(100%)' }}
+                  initial={{ transform: 'translateX(0%)' }}
                   from={{ transform: 'translateX(100%)' }}
                   enter={{ transform: 'translateX(0%)' }}
                   leave={{ transform: 'translateX(-100%)' }}
@@ -45,11 +41,17 @@ const Auth = () => {
                   )}
                 </Transition>
               )} />
-          </Router>
         </div>
       </div>
     </>
   )
 }
 
-export default Auth
+
+const AuthRouter = () => (
+  <BrowserRouter>
+    <Auth/>
+  </BrowserRouter>
+)
+
+export default AuthRouter
