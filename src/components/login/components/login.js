@@ -9,11 +9,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
+import {Link as Rlink } from 'react-router-dom'
 
 
 
 
-export const LoginHeader = ({ classes, ...props }) => console.log("from login",props) || (
+export const LoginHeader = ({ classes, ...props }) => (
   <>
     <Avatar className={classes.avatar}>
       <LockOutlinedIcon />
@@ -24,8 +25,7 @@ export const LoginHeader = ({ classes, ...props }) => console.log("from login",p
   </>
 )
 
-const LoginContent = ({ classes, style }) => (
-  <div className={classes.authCarouselItem} style={style} >
+export const LoginBody = ({ classes, style }) => (
     <form >
       <TextField
         variant="outlined"
@@ -59,12 +59,10 @@ const LoginContent = ({ classes, style }) => (
         color="primary"
       >
         Sign In
-          </Button>
+      </Button>
       <Link className={classes.link} variant="body2" >
         Forgot password?
-          </Link>
+      </Link>
+      <Rlink to="/forgot">Towards Forgot</Rlink>
     </form>
-  </div >
 )
-
-export default LoginContent

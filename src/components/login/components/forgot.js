@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {Link as Rlink } from 'react-router-dom'
 
 
 export const ForgotHeader = ({ classes }) => (
@@ -18,9 +19,7 @@ export const ForgotHeader = ({ classes }) => (
   </>
 )
 
-const Forgot = ({ classes, style }) => (
-
-  <div className={classes.authCarouselItem} style={style}>
+export const ForgotBody = ({ classes, style }) => (
     <form >
       <TextField
         variant="outlined"
@@ -40,8 +39,9 @@ const Forgot = ({ classes, style }) => (
       >
         Back
       </Button>
+      <Rlink to="/login">Back to Login</Rlink>
+      <Rlink to="/otp">Towards Otp</Rlink>
+      <Rlink to="/otp1">Towards Otp1</Rlink>
     </form>
-  </div>
 )
 
-export default Forgot

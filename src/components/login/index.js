@@ -1,14 +1,41 @@
-import React from 'react'
-import { BrowserRouter , Switch, Route } from "react-router-dom";
+import React, { useRef } from 'react'
+import {  Switch, Route } from "react-router-dom";
+import { Router } from 'react-router'
+import { createBrowserHistory } from 'history'
 import useStyles from './styles.js'
-import {Transition} from 'react-spring/renderprops'
+import {useTransition, animated} from 'react-spring'
 //import LinearProgress from '@material-ui/core/LinearProgress';
-import Login, { LoginHeader } from './login.js'
-import Forgot, { ForgotHeader } from './forgot.js'
+import Routes, {PathIndex} from './routes.js'
+import useRouter from './useRouter.js'
+const history = createBrowserHistory()
 
-const Auth = () => {
+
+
+const Auth = () =>   {
   const classes = useStyles()
-
+  const { location } = useRouter()
+  let previous = useRef(null)
+  let direction = useRef(1)
+  const transitions = useTransition(location, location.pathname, {
+    initial: loc => { 
+      if (previous.current == null) {
+        previous.current = PathIndex(loc.pathname)
+      }
+      return {transform: 'translateX(0%)'}
+    },
+    from: loc => {
+      const currentState = PathIndex(loc.pathname)
+      direction = currentState < previous.current ? -1 : 1
+      previous.current = currentState
+      return { transform: `translateX(${100 * direction}%)`}
+    },
+    enter: loc => { 
+      return { transform: 'translateX(0%)'} 
+    },
+    leave: loc => { 
+      return {transform: `translateX(${-100 * direction}%)`}
+    },
+  })
   return (
     <>
       <div className={classes.container}>
@@ -16,31 +43,22 @@ const Auth = () => {
           {/*<LinearProgress className={classes.linerProgress} />*/}
           <div className={classes.authHeader}>
               <Switch>
-                <Route path="/login" render={props => LoginHeader({ ...props, classes })} />
-                <Route path="/forgot" render={props => ForgotHeader({ ...props, classes })} />
+                {Routes.map((route) => (
+                    <Route key={route.key} path={route.path} render={props => route.HeaderComponent({ ...props, classes })} />
+                  ))}
               </Switch>
           </div>
-            <Route
-              children={({ location,history }) => (console.log(location,history)) || (
-                <Transition
-                  config={{}}
-                  items={location}
-                  keys={location.pathname}
-                  initial={{ transform: 'translateX(0%)' }}
-                  from={{ transform: 'translateX(100%)' }}
-                  enter={{ transform: 'translateX(0%)' }}
-                  leave={{ transform: 'translateX(-100%)' }}
-                >
-                  {item => style => (
-                    <div className={classes.authBodyCarouselWrapper}>
-                      <Switch location={location}>
-                        <Route exact path="/login" render={props => Login({ ...props, style, classes })} />
-                        <Route exact path="/forgot" render={props => Forgot({ ...props, style, classes })} />
-                      </Switch>
-                    </div>
-                  )}
-                </Transition>
-              )} />
+          <div className={classes.authBodyCarouselWrapper}> 
+          {transitions.map(({ item, props, key })=> (
+            <animated.div key={key} className={classes.authCarouselItem} style={props}>
+            <Switch location={item}>
+            {Routes.map((route) => (
+              <Route key={route.key} path={route.path} render={props => route.BodyComponent({ ...props, classes })} />
+            ))}
+            </Switch>
+          </animated.div>
+          ))}
+          </div>
         </div>
       </div>
     </>
@@ -48,10 +66,11 @@ const Auth = () => {
 }
 
 
-const AuthRouter = () => (
-  <BrowserRouter>
+ 
+ const AuthRouter = () => {
+  return (<Router history={history}>
     <Auth/>
-  </BrowserRouter>
-)
+  </Router>)
+ }
 
 export default AuthRouter
