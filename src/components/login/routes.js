@@ -9,14 +9,16 @@ const Items = [
         key:1,
         HeaderComponent: LoginHeader,
         BodyComponent: LoginBody,
-        path: '/login' 
+        path: ['/login'], 
+        protected: false
     },
     {
         label:'Forgot',
         key:2,
         HeaderComponent: ForgotHeader,
         BodyComponent: ForgotBody,
-        path:'/forgot'
+        path:'/forgot',
+        protected: true
     },
 
 ]
@@ -28,7 +30,7 @@ export const PathIndex = (path) => {
             return Items[i].key
         }
     }
-    return 0
+    return -1
 }
 
 export default Items

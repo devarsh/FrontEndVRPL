@@ -19,8 +19,8 @@ export const ForgotHeader = ({ classes }) => (
   </>
 )
 
-export const ForgotBody = ({ classes, style }) => (
-    <form >
+export const ForgotBody = ({ classes, style }) => {
+    return (<form >
       <TextField
         variant="outlined"
         margin="normal"
@@ -40,8 +40,6 @@ export const ForgotBody = ({ classes, style }) => (
         Back
       </Button>
       <Rlink to="/login">Back to Login</Rlink>
-      <Rlink to="/otp">Towards Otp</Rlink>
-      <Rlink to="/otp1">Towards Otp1</Rlink>
     </form>
-)
+)}
 
