@@ -29,10 +29,7 @@ export default makeStyles(theme => ({
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
-  },
-  avatar: {
-    margin: theme.spacing(2, 0, 2, 0),
-    backgroundColor: theme.palette.secondary.main,
+    margin: theme.spacing(1),
   },
   authHeader: {
     padding: theme.spacing(0, 5, 0, 5),
@@ -67,9 +64,4 @@ export default makeStyles(theme => ({
     left: 0,
     width: themeVars.width,
   },
-  link: {
-    marginTop: theme.spacing(2),
-    display: 'block'
-  }
-
 }))

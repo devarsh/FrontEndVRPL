@@ -1,21 +1,16 @@
 import React, { useRef } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-
-import useStyles from './styles.js'
 import {useTransition, animated} from 'react-spring'
+import useStyles from './styles.js'
 //import LinearProgress from '@material-ui/core/LinearProgress';
 import Routes, {PathIndex} from './routes.js'
-import useRouter from './useRouter.js'
-import PrivateRoute from './components/protected.js'
-
-
-
+import useRouter, { PrivateRoute } from './useRouter.js'
 
 
 const Auth = () =>   {
-  const classes = useStyles()
+  const classes  = useStyles()
   const { location } = useRouter()
+  console.log(location)
   let previous = useRef(null)
   let direction = useRef(1)
   const transitions = useTransition(location, location.pathname, {
@@ -43,27 +38,27 @@ const Auth = () =>   {
               <Switch>
                 {Routes.map((route) => (
                   route.protected ? (
-                    <PrivateRoute key={route.key} path={route.path} component={props => route.HeaderComponent({ ...props, classes })} />
+                    <PrivateRoute key={route.key} path={route.path} redirectPath={route.redirect} component={props => route.HeaderComponent({...props})} />
                   ) : (
-                    <Route key={route.key} path={route.path} render={props => route.HeaderComponent({ ...props, classes })} />
+                    <Route key={route.key} path={route.path} render={props => route.HeaderComponent({...props})} />
                   )
                   ))}
               </Switch>
           </div>
           <div className={classes.authBodyCarouselWrapper}> 
-          {transitions.map(({ item, props, key })=> (
+          {/*transitions.map(({ item, props, key })=> (
             <animated.div key={key} className={classes.authCarouselItem} style={props}>
             <Switch location={item}>
             {Routes.map((route) => (
               route.protected ? (
-                <PrivateRoute key={route.key} path={route.path} component={props => route.BodyComponent({ ...props, classes })} />
+              <PrivateRoute key={route.key} path={route.path} redirectPath={route.redirect} component={props => route.BodyComponent({...props})} />
               ) : (
-                <Route key={route.key} path={route.path} render={props => route.BodyComponent({ ...props, classes })} />
+                <Route key={route.key} path={route.path} render={props => route.BodyComponent({...props})} />
               )
             ))}
             </Switch>
           </animated.div>
-          ))}
+              ))*/}
           </div>
         </div>
       </div>

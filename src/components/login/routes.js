@@ -2,7 +2,6 @@ import  { LoginHeader,LoginBody } from './components/login.js'
 import  { ForgotHeader,ForgotBody } from './components/forgot.js'
 
 
-
 const Items = [
     {
         label:'Login',
@@ -10,7 +9,7 @@ const Items = [
         HeaderComponent: LoginHeader,
         BodyComponent: LoginBody,
         path: ['/login'], 
-        protected: false
+        protected: false,
     },
     {
         label:'Forgot',
@@ -18,10 +17,13 @@ const Items = [
         HeaderComponent: ForgotHeader,
         BodyComponent: ForgotBody,
         path:'/forgot',
-        protected: true
+        protected: false,
+        redirect:'/login',
     },
 
 ]
+
+
 
 export const PathIndex = (path) => {
     let i=0;
