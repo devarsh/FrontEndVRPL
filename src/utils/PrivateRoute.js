@@ -1,17 +1,13 @@
-import React, { useContext, useRef } from 'react';
-import { __RouterContext, Redirect, Route } from 'react-router-dom';
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-export default function useRouter() {
-  return useContext(__RouterContext);
-}
-
-export const PrivateRoute = ({
+const PrivateRoute = ({
   component: Component,
   redirectPath,
   location,
   ...rest
 }) => {
-  let redirect = useRef(false);
+  let redirect = React.useRef(false);
   if (redirect.current === true) {
     return null;
   } else {
@@ -35,3 +31,5 @@ export const PrivateRoute = ({
     );
   }
 };
+
+export default PrivateRoute;

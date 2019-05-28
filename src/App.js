@@ -26,7 +26,7 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <MuiThemeProvider theme={theme}>
-                <Auth />
+        <Auth />
       </MuiThemeProvider>
     </React.Fragment>
   );

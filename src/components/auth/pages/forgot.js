@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Link as Rlink } from 'react-router-dom';
 
-import useStyles from './styles.js';
+import useStyles from 'styles/authPages';
 
 export const ForgotHeader = () => {
   const classes = useStyles();

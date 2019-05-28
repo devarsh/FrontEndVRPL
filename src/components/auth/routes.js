@@ -1,7 +1,9 @@
 import { LoginHeader, LoginBody } from './pages/login.js';
 import { ForgotHeader, ForgotBody } from './pages/forgot.js';
 
-const Items = [
+export const KEY = 'key';
+
+export const Routes = [
   {
     label: 'Login',
     key: 1,
@@ -20,15 +22,3 @@ const Items = [
     redirect: '/login'
   }
 ];
-
-export const PathIndex = path => {
-  let i = 0;
-  for (i = 0; i < Items.length; i++) {
-    if (Items[i].path === path) {
-      return Items[i].key;
-    }
-  }
-  return -1;
-};
-
-export default Items;

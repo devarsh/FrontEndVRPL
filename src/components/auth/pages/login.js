@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link as Rlink } from 'react-router-dom';
 
-import useStyles from './styles.js';
+import useStyles from 'styles/authPages';
 
 export const LoginHeader = () => {
   const classes = useStyles();
