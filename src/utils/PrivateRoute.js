@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({
-  component: Component,
+  render: Component,
   redirectPath,
   location,
   ...rest
@@ -15,7 +15,7 @@ const PrivateRoute = ({
       <Route
         {...rest}
         render={props => {
-          /*redirect.current = true //need to put conditional logic*/
+          redirect.current = true; //need to put conditional logic*/
           return redirect.current ? (
             <Redirect
               to={{
@@ -24,7 +24,7 @@ const PrivateRoute = ({
               }}
             />
           ) : (
-            Component({ ...props })
+            <Component {...props} />
           );
         }}
       />

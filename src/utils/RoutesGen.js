@@ -1,5 +1,4 @@
 import React from 'react';
-import PrivateRoute from './PrivateRoute.js';
 import { Switch, Route } from 'react-router-dom';
 
 const RoutesGen = props => {
@@ -8,19 +7,12 @@ const RoutesGen = props => {
     throw new Error('Routes should be any array but found ', Routes);
   }
   return (
-    <Switch location={location}>
+    <Switch location={location || null}>
       {Routes.map(route => {
         const Component = route[componentKey];
-        return route.protected ? (
-          <PrivateRoute
-            key={route.key}
-            path={route.path}
-            redirectPath={route.redirect}
-            component={props => <Component {...props} />}
-          />
-        ) : (
+        return (
           <Route
-            key={route.key}
+            key={route.path}
             path={route.path}
             render={props => <Component {...props} />}
           />

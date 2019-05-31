@@ -20,6 +20,16 @@ export default makeStyles(theme => ({
     position: 'relative',
     minHeight: '100vh'
   },
+  overlay: {
+    opacity: 0,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    background: `rgba(255, 255, 255, 0.5)`
+  },
   authWrapper: {
     width: themeVars.width,
     height: themeVars.height,
@@ -50,7 +60,7 @@ export default makeStyles(theme => ({
     flexDirection: 'row',
     overflow: 'hidden',
     marginTop: theme.spacing(1),
-    padding: theme.spacing(5, 5, 4, 5),
+    padding: theme.spacing(0, 5, 4, 5),
     flexShrink: 0,
     '& form': {
       width: themeVars.width

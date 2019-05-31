@@ -8,5 +8,16 @@ export default makeStyles(theme => ({
   link: {
     marginTop: theme.spacing(2),
     display: 'block'
+  },
+  ButtonText: {
+    textTransform: 'initial'
+  },
+  NoHoverBackground: {
+    '&:hover': {
+      backgroundColor: 'initial'
+    }
+  },
+  BoxPadding: {
+    padding: theme.spacing(2, 0)
   }
 }));
