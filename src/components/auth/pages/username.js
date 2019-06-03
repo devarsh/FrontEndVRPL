@@ -6,8 +6,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Box from '@material-ui/core/Box';
-import useStyles from './styles';
-
+import Link from '@material-ui/core/Link';
+import { Spacer24 } from './components';
 export const UsernameHeader = () => {
   return (
     <Box
@@ -31,11 +31,15 @@ export const UsernameHeader = () => {
 };
 
 export const UsernameBody = ({ history }) => {
-  const classes = useStyles();
   const next = () => history.push('/pwd');
   return (
     <form>
-      <Box component="div" display="block">
+      <Box
+        component="div"
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="space-between"
+      >
         <TextField
           variant="outlined"
           margin="normal"
@@ -44,30 +48,12 @@ export const UsernameBody = ({ history }) => {
           label="Username"
           name="username"
           autoComplete="email"
-          autoFocus
         />
-      </Box>
-      <Box
-        className={classes.BoxPadding}
-        display="flex"
-        justifyContent="space-between"
-      >
-        <Button
-          color="primary"
-          classes={{
-            root: classes.ButtonText,
-            textPrimary: classes.NoHoverBackground
-          }}
-        >
-          <Typography variant="subtitle2">Forgot Username?</Typography>
-        </Button>
-        <Button
-          classes={{ root: classes.ButtonText }}
-          variant="contained"
-          size="large"
-          color="primary"
-          onClick={next}
-        >
+        <Spacer24 />
+        <Link component="button" variant="subtitle2">
+          Forgot Username?
+        </Link>
+        <Button variant="contained" size="large" color="primary" onClick={next}>
           Next
         </Button>
       </Box>

@@ -13,17 +13,17 @@ export const Routes = [
     path: '/email'
   },
   {
-    label: 'Otp',
-    key: 5,
-    HeaderComponent: OtpHeader,
-    BodyComponent: OtpBody,
-    path: '/otp'
-  },
-  {
     label: 'Password',
-    key: 3,
+    key: 2,
     HeaderComponent: PasswordHeader,
     BodyComponent: PasswordBody,
     path: '/pwd'
+  },
+  {
+    label: 'Otp',
+    key: 3,
+    HeaderComponent: OtpHeader,
+    BodyComponent: OtpBody,
+    path: '/otp'
   }
 ];

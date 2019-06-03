@@ -1,4 +1,4 @@
-const PathIndex = (items, key) => path => {
+export default (items, key) => path => {
   let i = 0;
   for (i = 0; i < items.length; i++) {
     if (items[i].path === path) {
@@ -7,5 +7,3 @@ const PathIndex = (items, key) => path => {
   }
   return -1;
 };
-
-export default PathIndex;
