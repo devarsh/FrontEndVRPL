@@ -4,7 +4,7 @@ import { animated } from 'react-spring';
 import useStyles from './styles/index.js';
 import useRouter from 'context/useRouter.js';
 import { Routes } from './routes.js';
-import RouteGen from 'utils/RoutesGen';
+import RouteGen from './utils/RoutesGen';
 import useRoutesAnimation from './animation.js';
 
 const Auth = () => {

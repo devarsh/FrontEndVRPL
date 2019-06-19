@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
-import PathIndex from 'utils/PathIndex.js';
+import PathIndex from './utils/PathIndex.js';
 import { Routes, KEY } from './routes.js';
 
 const CurrPathIndex = PathIndex(Routes, KEY);
 
-export default location => {
+export default (location) => {
   const previous = React.useRef(location.pathname);
   React.useEffect(() => void (previous.current = location.pathname));
   const dir = (curr, prev) => {
@@ -17,9 +17,10 @@ export default location => {
   };
   const transitions = useTransition(location, location.pathname, {
     config: {},
-    from: item => ({ transform: dir(item.pathname, previous.current) }),
-    enter: item => ({ transform: 'translate3d(0%,0,0)' }),
-    leave: item => ({ transform: dir(item.pathname, location.pathname) })
+    initial: (item) => ({ transform: 'translate3d(0%,0,0)' }),
+    from: (item) => ({ transform: dir(item.pathname, previous.current) }),
+    enter: (item) => ({ transform: 'translate3d(0%,0,0)' }),
+    leave: (item) => ({ transform: dir(item.pathname, location.pathname) })
   });
   return transitions;
 };

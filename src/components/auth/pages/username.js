@@ -6,27 +6,21 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import { Spacer24 } from './components';
+import { Spacer24, HeaderWrapper, CustomLink } from './components';
 export const UsernameHeader = () => {
   return (
-    <Box
-      component="div"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      style={{ width: '100%', minHeight: '150px', paddingTop: '20px' }}
-    >
+    <HeaderWrapper>
       <Avatar>
         <LockOutlinedIcon />
       </Avatar>
+      <Spacer24 />
       <Typography variant="h5" gutterBottom>
         Sign in
       </Typography>
       <Typography variant="subtitle1" gutterBottom>
         to continue to Application
       </Typography>
-    </Box>
+    </HeaderWrapper>
   );
 };
 
@@ -50,10 +44,13 @@ export const UsernameBody = ({ history }) => {
           autoComplete="email"
         />
         <Spacer24 />
-        <Link component="button" variant="subtitle2">
-          Forgot Username?
-        </Link>
-        <Button variant="contained" size="large" color="primary" onClick={next}>
+        <CustomLink>Forgot Username?</CustomLink>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          onClick={next}
+        >
           Next
         </Button>
       </Box>

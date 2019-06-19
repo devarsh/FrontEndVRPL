@@ -6,21 +6,16 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Box from '@material-ui/core/Box';
-import { LoginBadge, Spacer24 } from './components';
+import { LoginBadge, Spacer24, HeaderWrapper } from './components';
 
 export const OtpHeader = ({ history }) => {
   const next = () => history.push('/email');
   return (
-    <Box
-      component="div"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      style={{ width: '100%', minHeight: '150px', paddingTop: '20px' }}
-    >
+    <HeaderWrapper>
       <Avatar>
         <LockOutlinedIcon />
       </Avatar>
+      <Spacer24 />
       <Typography variant="h5" gutterBottom>
         2-step Verification
       </Typography>
@@ -28,14 +23,15 @@ export const OtpHeader = ({ history }) => {
         This extra step shows that it’s really you trying to sign in
       </Typography>
       <LoginBadge username="devarshmshah@gmail.com" next={next} />
-    </Box>
+    </HeaderWrapper>
   );
 };
 
 export const OtpBody = ({ history }) => {
   const next = () => history.push('/email');
   return (
-    <form style={{ paddingTop: '24px' }}>
+    <form>
+      <Spacer24 />
       <Typography onClick={next} variant="subtitle2" gutterBottom align="left">
         2-step Verification
       </Typography>
@@ -57,7 +53,12 @@ export const OtpBody = ({ history }) => {
           name="otp"
         />
         <Spacer24 />
-        <Button variant="contained" size="large" color="primary" onClick={next}>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          onClick={next}
+        >
           Next
         </Button>
       </Box>

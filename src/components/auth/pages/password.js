@@ -9,27 +9,21 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import { LoginBadge, Spacer24 } from './components';
+import { LoginBadge, Spacer24, HeaderWrapper, CustomLink } from './components';
 
 export const PasswordHeader = ({ history }) => {
   const next = () => history.push('/email');
   return (
-    <Box
-      component="div"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      style={{ width: '100%', minHeight: '150px', paddingTop: '20px' }}
-    >
+    <HeaderWrapper>
       <Avatar>
         <LockOutlinedIcon />
       </Avatar>
+      <Spacer24 />
       <Typography variant="h5" gutterBottom>
         Welcome
       </Typography>
       <LoginBadge username="devarshmshah@gmail.com" next={next} />
-    </Box>
+    </HeaderWrapper>
   );
 };
 
@@ -50,7 +44,7 @@ export const PasswordBody = ({ history }) => {
           margin="normal"
           fullWidth
           id="password"
-          label="Enter Your Password"
+          label="Enter your password"
           name="password"
           type={visible ? 'text' : 'password'}
           InputProps={{
@@ -68,10 +62,13 @@ export const PasswordBody = ({ history }) => {
           }}
         />
         <Spacer24 />
-        <Link component="button" variant="subtitle2">
-          Forgot Password?
-        </Link>
-        <Button variant="contained" size="large" color="primary" onClick={next}>
+        <CustomLink>Forgot Password?</CustomLink>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          onClick={next}
+        >
           Next
         </Button>
       </Box>

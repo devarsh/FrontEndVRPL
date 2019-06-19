@@ -6,7 +6,7 @@ const themeVars = {
   borderRadius: 8
 };
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   '@global': {
     body: {
       background: theme.palette.common.white
@@ -39,7 +39,12 @@ export default makeStyles(theme => ({
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      height: '100vh',
+      border: '0px'
+    }
   },
   authHeader: {
     padding: theme.spacing(0, 5, 0, 5),
@@ -49,7 +54,10 @@ export default makeStyles(theme => ({
   },
   authBodyCarouselWrapper: {
     position: 'relative',
-    width: themeVars.width
+    width: themeVars.width,
+    [theme.breakpoints.down('xs')]: {
+      width: '100%'
+    }
   },
   authCarouselItem: {
     top: 0,
@@ -62,8 +70,14 @@ export default makeStyles(theme => ({
     marginTop: theme.spacing(1),
     padding: theme.spacing(0, 5, 4, 5),
     flexShrink: 0,
+    [theme.breakpoints.down('xs')]: {
+      width: '100%'
+    },
     '& form': {
-      width: themeVars.width
+      width: themeVars.width,
+      [theme.breakpoints.down('xs')]: {
+        width: '100%'
+      }
     }
   },
   linerProgress: {
@@ -72,6 +86,9 @@ export default makeStyles(theme => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    width: themeVars.width
+    width: themeVars.width,
+    [theme.breakpoints.down('xs')]: {
+      width: '100%'
+    }
   }
 }));
